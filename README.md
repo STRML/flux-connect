@@ -1,18 +1,41 @@
 # Flux-Connect
 
-A `@connect` decorator for any Flux app.
+A `@connect` decorator for any Flux app, similar to [react-redux](https://github.com/reactjs/react-redux).
 
 > This connector is very much alpha. To use it, please simply copy/paste into your app until I have the time
   to put together a proper ES5 build.
 
 ### Usage
 
+Simply put, this package exposes a decorator:
+
+```js
+@connect((state) => {user: state.user, buyBook: state.actions.buyBook})
+class App extends React.Component {}
+```
+
+You can use this decorator to get data to any component in the tree.
+
+This uses [context](https://facebook.github.io/react/docs/context.html) to propagate data. To set up the context
+passing, wrap your app in a `<Provider>`.
+
+```js
+ReactDOM.render(<Provider fluxToData={fluxToData}><App /></Provider>)
+```
+
+That's it!
+
+#### Complete Example
+
+This example shows how to set up `connect()` and `<Provider>` in a normal app.
+
+See the reference on [typing flux-connect with Flow](#using-connect-with-flow) for more on making
+your apps type-safe.
+
 ```js
 import {connect, Provider} from 'flux-connect';
 import * as AppActions from 'project/actions/index';
 // ...
-
-type AppState = {actions: typeof AppActions, books: Array<Book>, user: User};
 
 @connect((state) => {user: state.user, buyBook: state.actions.buyBook})
 class App extends React.Component {
@@ -21,7 +44,7 @@ class App extends React.Component {
   };
 
   render() {
-    return React.createElement('div', {onClick: this.props.buyBook}, `Buy my book, ${user.username}!`);
+    return <div onClick={this.props.buyBook}>Buy my book, {user.username}!</div>;
   }
 }
 
