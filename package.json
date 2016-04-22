@@ -1,0 +1,22 @@
+{
+  "name": "flux-connect",
+  "version": "0.0.1",
+  "description": "A Redux-style @connect decorator for any Flux apps, with proper Flow typing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fluxxor",
+    "flux",
+    "react",
+    "flow",
+    "connect"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strml/flux-connect.git"
+  },
+  "author": "Samuel Reed <samuel.trace.reed@gmail.com> (http://strml.net/)",
+  "license": "MIT"
+}
